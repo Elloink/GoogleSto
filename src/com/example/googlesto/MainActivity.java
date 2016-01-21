@@ -1,6 +1,7 @@
 package com.example.googlesto;
 
 import com.example.googlesto.fragment.AppFragment;
+import com.example.googlesto.fragment.BaseFragment;
 import com.example.googlesto.fragment.CatagoryFragment;
 import com.example.googlesto.fragment.FragmentFactory;
 import com.example.googlesto.fragment.FragmentFactory;
@@ -72,6 +73,7 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 
 	@Override
 	protected void initView() {
+		super.initView();
 		setContentView(R.layout.activity_main);
 		dl = (DrawerLayout) findViewById(R.id.dl);
 		myViewPager = (ViewPager) findViewById(R.id.vp);
@@ -80,7 +82,15 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 		pagertabstrip.setTabIndicatorColor(getResources().getColor(
 				R.color.indicatorcolor));
 		myViewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
-		super.initView();
+		myViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
+			@Override
+			public void onPageSelected(int position) {
+				super.onPageSelected(position);
+				BaseFragment creatFragment = FragmentFactory.creatFragment(position);
+			creatFragment.show();//当界面切换的时候重新请求服务器，切换状态
+			}
+		});
+	
 	}
 
 	@Override

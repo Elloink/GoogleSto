@@ -1,5 +1,8 @@
 package com.example.googlesto.fragment;
 
+
+import com.example.googlesto.view.LoadingPage.LoadResult;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -7,18 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class TopFragment extends Fragment {
+public class TopFragment extends BaseFragment {
+
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		TextView tv = new TextView(getContext());
-		tv.setText("TopFragment");
-		tv.setTextSize(36);
-		
-		
-		
-		
-		return tv;
+	public View createSuccessView() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	@Override
+	public LoadResult load() {
+		// TODO Auto-generated method stub
+		return LoadResult.error;
+	}
+	
 
 }

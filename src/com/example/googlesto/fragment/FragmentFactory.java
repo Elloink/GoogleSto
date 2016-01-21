@@ -10,12 +10,12 @@ import android.support.v4.app.Fragment;
  * @author threes
  *
  */
-public class FragmentFactory extends Fragment {
+public class FragmentFactory  {
 	//利用map集合重复使用fragment节约内存
-	private static Map<Integer, Fragment> mFragments = new HashMap<Integer, Fragment>();
+	private static Map<Integer, BaseFragment> mFragments = new HashMap<Integer,BaseFragment>();
 
-	public static Fragment creatFragment(int position) {
-		Fragment fragment = null;  
+	public static BaseFragment creatFragment(int position) {
+		BaseFragment fragment = null;  
 		fragment = mFragments.get(position);// 在集合中取出fragment
 		if (fragment == null) {// 如果在集合中取 不出来，需要重新创建
 			if (0 == position) {
