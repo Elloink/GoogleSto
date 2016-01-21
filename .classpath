@@ -6,5 +6,8 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="lib" path="libs/Bughd_android_sdk_v1.3.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/xUtils-2.6.14.jar"/>
+	<classpathentry kind="lib" path="libs/org.apache.httpcomponents.httpclient_4.5.1.jar"/>
+	<classpathentry kind="lib" path="libs/httpcore-4.4.3.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

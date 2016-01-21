@@ -3,8 +3,9 @@ package com.example.googlesto.fragment;
 import java.util.Random;
 
 import com.example.googlesto.R;
-
+import com.example.googlesto.protocol.HomeProtocol;
 import com.example.googlesto.view.LoadingPage.LoadResult;
+
 
 //import android.R;
 import android.os.Bundle;
@@ -37,6 +38,8 @@ public class HomeFragment extends BaseFragment {
 	}
 	
 	public LoadResult load() {
+		HomeProtocol hProtocol = new HomeProtocol();
+		hProtocol.load(0);
 		return LoadResult.success;
 	}
 
