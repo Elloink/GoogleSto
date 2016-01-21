@@ -1,6 +1,7 @@
 package com.example.googlesto.view;
 
 import com.example.googlesto.R;
+import com.example.googlesto.manager.ThreadManager;
 import com.example.googlesto.tools.UIUtils;
 
 import android.content.Context;
@@ -126,14 +127,13 @@ public abstract class LoadingPage extends FrameLayout {
 		}
 		// 请求服务器获取服务器上的数据进行判断
 		// 有关连接服务器的操作只能在子线程执行（所以添加线程）,但是在子线程中不能切换界面,所以执行showpage()方法只能在runuiThread方法中执行
-		new Thread() {
+		ThreadManager.getInstance().createLongPool().excute(new Runnable() {
+			@Override
 			public void run() {
 				SystemClock.sleep(2000);
 				// 请求服务器返回一个结果
 				final LoadResult result = load();
-
 					UIUtils.runOnUiThread(new Runnable() {
-
 						@Override
 						public void run() {
 							if (result != null) {
@@ -143,10 +143,8 @@ public abstract class LoadingPage extends FrameLayout {
 							}
 						}
 					});
-				}
-
-
-		}.start();
+			}
+		});
 		showpage();// 在主线程中执行
 	}
 
@@ -157,7 +155,6 @@ public abstract class LoadingPage extends FrameLayout {
 	 */
 	public abstract View createSuccessView();
 
-	
 	/**
 	 * 加载数据
 	 * 
