@@ -2,6 +2,8 @@ package com.example.googlesto.tools;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.view.View;
 
 import com.example.googlesto.BaseApplication;
 
@@ -41,7 +43,9 @@ public class UIUtils {
 		final float scale = getResource().getDisplayMetrics().density;
 		return (int) (px / scale + 0.5f);
 	}
-
+	public static View inflate(int id) {
+		return View.inflate(getContext(), id, null);
+	}
 	/**
 	 * 把runnable方法提价到主线程运行
 	 * 
@@ -55,5 +59,13 @@ public class UIUtils {
 			// 获取handler
 			BaseApplication.getHandler().post(runnable);
 		}
+	}
+/**
+ * 获取图片
+ * @param id
+ * @return
+ */
+	public static Drawable getDrawalbe(int id) {
+		return getResource().getDrawable(id);
 	}
 }

@@ -106,8 +106,8 @@ public abstract class LoadingPage extends FrameLayout {
 					: View.INVISIBLE);
 		}
 		if (state == STATE_SUCCESS) {
-			successView = createSuccessView();
-			if (successView != null) {
+			if (successView == null) {
+				successView = createSuccessView();
 				this.addView(successView, new FrameLayout.LayoutParams(
 						LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 				successView.setVisibility(View.VISIBLE);
