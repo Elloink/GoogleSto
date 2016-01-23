@@ -22,8 +22,9 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.util.IOUtils;
 
 public abstract class BaseProtocol<T> {
+	String json=null;
 	public T load(int index) {
-		String json=null;
+		
 		if (json == null) {
 			loadServer(index);
 		}
@@ -33,7 +34,6 @@ public abstract class BaseProtocol<T> {
 		} else {
 			return null;
 		}
-
 	}
 	/**
 	 * 下载服务器的json数据
@@ -50,7 +50,6 @@ public abstract class BaseProtocol<T> {
 				Toast.makeText(BaseApplication.getApplication(), "下载错误",
 						Toast.LENGTH_SHORT).show();
 			}
-
 			@Override
 			public void onSuccess(ResponseInfo<String> responseInfo) {
 				String result = (String) responseInfo.result;
@@ -83,7 +82,6 @@ public abstract class BaseProtocol<T> {
 		} finally {
 			IOUtils.closeQuietly(bw);
 		}
-
 	}
 
 	public int getIndex(int index) {
@@ -111,7 +109,6 @@ public abstract class BaseProtocol<T> {
 				String str=null;
 				StringWriter sw=new StringWriter();
 				while((str=br.readLine())!=null){
-				
 					sw.write(str);
 				}
 				return sw.toString();

@@ -3,8 +3,10 @@ package com.example.googlesto.fragment;
 import java.util.List;
 
 import com.example.googlesto.R;
+import com.example.googlesto.adapter.DefaultAdapter;
 import com.example.googlesto.domin.SubjectInfo;
 import com.example.googlesto.globle.GlobalContants;
+import com.example.googlesto.holder.BaseHoder;
 import com.example.googlesto.protocol.SubjectProtocol;
 import com.example.googlesto.tools.UIUtils;
 import com.example.googlesto.view.BaseListView;
@@ -27,58 +29,49 @@ public class SubjectFragment extends BaseFragment {
 	@Override
 	public View createSuccessView() {
 		BaseListView listView = new BaseListView(UIUtils.getContext());
-		listView.setAdapter(new SubjectAdapter());
+
+		listView.setAdapter(new SubjectAdapter(datas));
 		return listView;
 	}
 
-	class SubjectAdapter extends BaseAdapter {
+	class SubjectAdapter extends DefaultAdapter<SubjectInfo> {
+
+		public SubjectAdapter(List<SubjectInfo> datas) {
+			super(datas);
+		}
+
+		@Override
+		public BaseHoder<SubjectInfo> getHolder() {
+			return new SubjectHolder();
+		}
+
 		
-		@Override
-		public int getCount() {
-			return datas.size();
-		}
 
-		@Override
-		public Object getItem(int position) {
-			return datas.get(position);
-		}
+	}
 
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
+	class SubjectHolder extends BaseHoder<SubjectInfo>{
+		ImageView item_icon;
+		TextView item_txt;
 
+		public void refreshView(SubjectInfo datas) {
+			this.item_txt.setText(datas.getDes());
+			bitmapUtils.display(this.item_icon, GlobalContants.URL
+					+ "image?name=" + datas.getUrl());
+		}
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			View view;
-			ViewHolder holder;
-			if(convertView!=null){
-				view=convertView;
-				holder=(ViewHolder) view.getTag();
-			}else{
-				view = UIUtils.inflate(R.layout.item_subject);
-				holder=new ViewHolder();
-				holder.item_icon=(ImageView) view.findViewById(R.id.item_icon);
-				holder.item_txt=(TextView) view.findViewById(R.id.item_txt);
-				view.setTag(holder);
-			}
-			SubjectInfo info=datas.get(position);
-			holder.item_txt.setText(info.getDes());
-			bitmapUtils.display(holder.item_icon, GlobalContants.URL+"image?name="+info.getUrl());
-			
+		public View initView() {
+			View view = UIUtils.inflate(R.layout.item_subject);
+			this.item_icon = (ImageView) view.findViewById(R.id.item_icon);
+			this.item_txt = (TextView) view.findViewById(R.id.item_txt);
 			return view;
 		}
 
 	}
-	class ViewHolder{
-		ImageView item_icon;
-		TextView item_txt;
-	}
+
 	@Override
 	public LoadResult load() {
 		SubjectProtocol subjectProtocol = new SubjectProtocol();
 		datas = subjectProtocol.load(0);
-		System.out.println(datas.toString());
 		return checkData(datas);
 	}
 
