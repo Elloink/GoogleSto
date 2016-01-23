@@ -45,6 +45,14 @@ public class SubjectFragment extends BaseFragment {
 			return new SubjectHolder();
 		}
 
+		@Override
+		public List<SubjectInfo> onload() {
+			SubjectProtocol subjectProtocol = new SubjectProtocol();
+			List<SubjectInfo> load = subjectProtocol.load(datas.size());
+			datas.addAll(load);
+			return load;
+		}
+
 		
 
 	}

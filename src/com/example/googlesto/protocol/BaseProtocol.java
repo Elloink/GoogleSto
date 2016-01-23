@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.List;
 
+import android.os.SystemClock;
 import android.widget.Toast;
 
 import com.example.googlesto.BaseApplication;
@@ -23,8 +24,9 @@ import com.lidroid.xutils.util.IOUtils;
 
 public abstract class BaseProtocol<T> {
 	String json=null;
+	
 	public T load(int index) {
-		
+	SystemClock.sleep(1500);	
 		if (json == null) {
 			loadServer(index);
 		}

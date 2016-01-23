@@ -36,7 +36,6 @@ public class ListBaseHolder extends BaseHoder<AppInfo> {
 
 	@Override
 	public void refreshView(AppInfo datas) {
-
 		this.item_title.setText(datas.getName());// 设置应用程序的名字
 		String size = Formatter.formatFileSize(UIUtils.getContext(),
 				datas.getSize());// 应用程序大小

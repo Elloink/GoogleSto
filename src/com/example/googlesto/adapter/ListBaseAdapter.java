@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-public class ListBaseAdapter extends DefaultAdapter<AppInfo> {
+public abstract class ListBaseAdapter extends DefaultAdapter<AppInfo> {
 
 	public ListBaseAdapter(List<AppInfo> datas) {
 		super(datas);
@@ -20,6 +20,9 @@ public class ListBaseAdapter extends DefaultAdapter<AppInfo> {
 	public BaseHoder<AppInfo> getHolder() {
 		return new ListBaseHolder();
 	}
+
+	@Override
+	public abstract List<AppInfo> onload() ;
 
 
 

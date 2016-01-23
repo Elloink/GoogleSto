@@ -53,7 +53,17 @@ public class HomeFragment extends BaseFragment {
 	public View createSuccessView() {
 		BaseListView listview = new BaseListView(getContext());
 		bitmapUtils = new BitmapUtils(getContext());
-		listview.setAdapter(new ListBaseAdapter(datas));
+		listview.setAdapter(new ListBaseAdapter(datas){
+
+			@Override
+			public List<AppInfo> onload() {
+				HomeProtocol hProtocol = new HomeProtocol();
+				List<AppInfo> load = hProtocol.load(datas.size());
+				datas.addAll(load);
+				return load;
+			}
+			
+		});
 		listview.setOnScrollListener(new PauseOnScrollListener(bitmapUtils,
 				false, true));
 		bitmapUtils.configDefaultLoadingImage(R.drawable.ic_default); // 设置如果图片加载中显示的图片
@@ -66,7 +76,6 @@ public class HomeFragment extends BaseFragment {
 	public LoadResult load() {
 		HomeProtocol hProtocol = new HomeProtocol();
 		datas = hProtocol.load(0);
-		System.out.println(datas.toString());
 		return checkData(datas);
 	}
 
