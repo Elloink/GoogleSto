@@ -9,6 +9,7 @@ import com.example.googlesto.adapter.ListBaseAdapter;
 import com.example.googlesto.domin.AppInfo;
 import com.example.googlesto.globle.GlobalContants;
 import com.example.googlesto.holder.BaseHoder;
+import com.example.googlesto.holder.HomePictureHolder;
 import com.example.googlesto.holder.ListBaseHolder;
 import com.example.googlesto.protocol.HomeProtocol;
 import com.example.googlesto.tools.BitmapHelper;
@@ -34,13 +35,16 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
+import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class HomeFragment extends BaseFragment {
 	private List<AppInfo> datas;
+	private List<String> pictures;//轮播图片集合
 
 	// 当此fragment挂载的activity创建的时候调用show（）；因为刚加载的时候，fragment没有滑动，所以不能调用show()
 	@Override
@@ -52,6 +56,12 @@ public class HomeFragment extends BaseFragment {
 	// 创建成功界面
 	public View createSuccessView() {
 		BaseListView listview = new BaseListView(getContext());
+		HomePictureHolder  hpHolder = new HomePictureHolder();
+		hpHolder.setDatas(pictures);
+		View hpview = hpHolder.getContentview();//得到homepictureholder管理的对象
+		hpview.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+		listview.addHeaderView(hpview);// // 把hpholder里的view对象 添加到listView的上面
+		
 		bitmapUtils = new BitmapUtils(getContext());
 		listview.setAdapter(new ListBaseAdapter(datas){
 
@@ -76,6 +86,7 @@ public class HomeFragment extends BaseFragment {
 	public LoadResult load() {
 		HomeProtocol hProtocol = new HomeProtocol();
 		datas = hProtocol.load(0);
+		pictures = hProtocol.getPictures();//获取轮播图片数据
 		return checkData(datas);
 	}
 

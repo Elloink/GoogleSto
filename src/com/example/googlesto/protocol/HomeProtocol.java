@@ -32,7 +32,7 @@ import com.lidroid.xutils.http.client.entity.FileUploadEntity;
 import com.lidroid.xutils.util.IOUtils;
 
 public class HomeProtocol extends BaseProtocol<List<AppInfo>> {
-	
+	private List<String> pictures;
 	/**
 	 * 解析json数据 碰到大括号{}用JSONObject,碰到中括号[]用JSONArray
 	 * 
@@ -41,8 +41,20 @@ public class HomeProtocol extends BaseProtocol<List<AppInfo>> {
 	 */
 	public List<AppInfo> paserJson(String json) {
 		List<AppInfo> list = new ArrayList<AppInfo>();
+		pictures=new ArrayList<String>();
 		try {
 			JSONObject jsonObject = new JSONObject(json);
+			//解析首页轮播的图片
+			JSONArray jsonArray2 = jsonObject.getJSONArray("picture");
+			for(int i=0;i<jsonArray2.length();i++){
+				String str=jsonArray2.getString(i);
+				pictures.add(str);
+			}
+			
+			
+			
+			
+			
 			JSONArray jsonArray = jsonObject.getJSONArray("list");
 			for (int i = 0; i < jsonArray.length(); i++) {
 				JSONObject jsonObject2 = jsonArray.getJSONObject(i);
@@ -67,6 +79,11 @@ public class HomeProtocol extends BaseProtocol<List<AppInfo>> {
 	}
 
 	
+	public List<String> getPictures() {
+		return pictures;
+	}
+
+
 	@Override
 	public String getKey() {
 		return "home";
