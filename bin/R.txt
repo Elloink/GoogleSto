@@ -495,7 +495,7 @@ int drawable list_item_bg 0x7f020070
 int drawable list_item_bg_normal 0x7f020071
 int drawable list_item_bg_pressed 0x7f020072
 int drawable nothing 0x7f020073
-int drawable notification_template_icon_bg 0x7f02008a
+int drawable notification_template_icon_bg 0x7f02008b
 int drawable photo_over 0x7f020074
 int drawable process_normal2 0x7f020075
 int drawable process_ratingbar 0x7f020076
@@ -518,6 +518,7 @@ int drawable tab_selected_pressed 0x7f020086
 int drawable tab_unselected 0x7f020087
 int drawable tab_unselected_focused 0x7f020088
 int drawable tab_unselected_pressed 0x7f020089
+int drawable th 0x7f02008a
 int id action0 0x7f090062
 int id action_bar 0x7f090041
 int id action_bar_activity_content 0x7f090003

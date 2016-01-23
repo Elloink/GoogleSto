@@ -2059,7 +2059,7 @@ containing a value of this type.
         public static final int list_item_bg_normal=0x7f020071;
         public static final int list_item_bg_pressed=0x7f020072;
         public static final int nothing=0x7f020073;
-        public static final int notification_template_icon_bg=0x7f02008a;
+        public static final int notification_template_icon_bg=0x7f02008b;
         public static final int photo_over=0x7f020074;
         public static final int process_normal2=0x7f020075;
         public static final int process_ratingbar=0x7f020076;
@@ -2082,6 +2082,7 @@ containing a value of this type.
         public static final int tab_unselected=0x7f020087;
         public static final int tab_unselected_focused=0x7f020088;
         public static final int tab_unselected_pressed=0x7f020089;
+        public static final int th=0x7f02008a;
     }
     public static final class id {
         public static final int action0=0x7f090062;
