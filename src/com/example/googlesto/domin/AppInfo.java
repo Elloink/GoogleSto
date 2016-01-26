@@ -19,6 +19,18 @@ public class AppInfo {
 	private String author;
 	private List<String> screen;
 	
+	public String getDownloadNum() {
+		return downloadNum;
+	}
+	public void setDownloadNum(String downloadNum) {
+		this.downloadNum = downloadNum;
+	}
+	public List<String> getSafeDes() {
+		return safeDes;
+	}
+	public void setSafeDes(List<String> safeDes) {
+		this.safeDes = safeDes;
+	}
 	private List<String> safeUrl;
 	private List<String> safeDesUrl;
 	private List<String> safeDes;
