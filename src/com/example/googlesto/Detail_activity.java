@@ -1,6 +1,7 @@
 package com.example.googlesto;
 
 import com.example.googlesto.domin.AppInfo;
+import com.example.googlesto.holder.DetailDesHolder;
 import com.example.googlesto.holder.DetailInfoHolder;
 import com.example.googlesto.holder.DetailSafeHolder;
 import com.example.googlesto.holder.DetailSreenHolder;
@@ -48,7 +49,7 @@ public class Detail_activity extends BaseActivity {
 	private DetailSreenHolder screenHolder;
 	private DetailSafeHolder safeHolder;
 
-	// private DetailDesHolder desHolder;
+	private DetailDesHolder desHolder;
 
 	protected View createSuccessView() {
 		View view = UIUtils.inflate(R.layout.activity_detail);
@@ -66,9 +67,11 @@ public class Detail_activity extends BaseActivity {
 		safeHolder = new DetailSafeHolder();
 		safeHolder.setDatas(data);
 		detail_safe.addView(safeHolder.getContentview());
-
+		// 应用描述界面
 		detail_des = (FrameLayout) view.findViewById(R.id.detail_des);
-
+		desHolder = new DetailDesHolder();
+		desHolder.setDatas(data);
+		detail_des.addView(desHolder.getContentview());
 		// 中间5张图片
 		detail_screen = (HorizontalScrollView) view
 				.findViewById(R.id.detail_screen);
