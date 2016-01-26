@@ -38,8 +38,6 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter implements
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		// Toast.makeText(UIUtils.getContext(), position + "position:",
-		// Toast.LENGTH_SHORT).show();
 		position = position - list.getHeaderViewsCount();// 获取到顶部条目的数量
 		onInnerItemClick(position);
 	}
