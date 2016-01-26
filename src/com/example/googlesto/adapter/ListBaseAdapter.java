@@ -9,11 +9,12 @@ import com.example.googlesto.holder.ListBaseHolder;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
 
 public abstract class ListBaseAdapter extends DefaultAdapter<AppInfo> {
 
-	public ListBaseAdapter(List<AppInfo> datas) {
-		super(datas);
+	public ListBaseAdapter(List<AppInfo> datas, ListView list) {
+		super(datas,list);
 	}
 
 	@Override

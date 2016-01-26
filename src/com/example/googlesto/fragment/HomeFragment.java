@@ -41,6 +41,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class HomeFragment extends BaseFragment {
 	private List<AppInfo> datas;
@@ -63,7 +64,7 @@ public class HomeFragment extends BaseFragment {
 		listview.addHeaderView(hpview);// // 把hpholder里的view对象 添加到listView的上面
 		
 		bitmapUtils = new BitmapUtils(getContext());
-		listview.setAdapter(new ListBaseAdapter(datas){
+		listview.setAdapter(new ListBaseAdapter(datas,listview){
 
 			@Override
 			public List<AppInfo> onload() {
@@ -72,8 +73,16 @@ public class HomeFragment extends BaseFragment {
 				datas.addAll(load);
 				return load;
 			}
+
+			@Override
+			public void onInnerItemClick(int position) {
+				super.onInnerItemClick(position);
+				 Toast.makeText(UIUtils.getContext(), position + "position:",
+				 Toast.LENGTH_SHORT).show();
+			}
 			
 		});
+		
 		listview.setOnScrollListener(new PauseOnScrollListener(bitmapUtils,
 				false, true));
 		bitmapUtils.configDefaultLoadingImage(R.drawable.ic_default); // 设置如果图片加载中显示的图片

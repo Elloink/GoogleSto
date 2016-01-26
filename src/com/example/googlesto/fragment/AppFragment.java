@@ -24,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -34,7 +35,7 @@ public class AppFragment extends BaseFragment {
 	public View createSuccessView() {
 		BaseListView listview = new BaseListView(getContext());
 		bitmapUtils = new BitmapUtils(getContext());
-		listview.setAdapter(new ListBaseAdapter(datas){
+		listview.setAdapter(new ListBaseAdapter(datas,  listview){
 
 			@Override
 			public List<AppInfo> onload() {

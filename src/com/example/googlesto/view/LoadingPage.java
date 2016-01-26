@@ -130,7 +130,7 @@ public abstract class LoadingPage extends FrameLayout {
 		ThreadManager.getInstance().createLongPool().excute(new Runnable() {
 			@Override
 			public void run() {
-				SystemClock.sleep(2000);
+				SystemClock.sleep(1000);
 				// 请求服务器返回一个结果
 				final LoadResult result = load();
 					UIUtils.runOnUiThread(new Runnable() {

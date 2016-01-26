@@ -27,7 +27,7 @@ public class GameFragment extends BaseFragment {
 	public View createSuccessView() {
 		BaseListView listview = new BaseListView(getContext());
 		bitmapUtils = new BitmapUtils(getContext());
-		listview.setAdapter(new ListBaseAdapter(datas){
+		listview.setAdapter(new ListBaseAdapter(datas,listview){
 
 			@Override
 			public List<AppInfo> onload() {

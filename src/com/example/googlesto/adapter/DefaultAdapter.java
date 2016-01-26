@@ -2,6 +2,8 @@ package com.example.googlesto.adapter;
 
 import java.util.List;
 
+import javax.crypto.spec.PSource;
+
 import com.example.googlesto.domin.AppInfo;
 import com.example.googlesto.holder.BaseHoder;
 import com.example.googlesto.holder.MoreHoder;
@@ -9,16 +11,37 @@ import com.example.googlesto.manager.ThreadManager;
 import com.example.googlesto.tools.UIUtils;
 
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
-public abstract class DefaultAdapter<Data> extends BaseAdapter {
+public abstract class DefaultAdapter<Data> extends BaseAdapter implements
+		OnItemClickListener {
 	protected List<Data> datas;
 	private static final int DEFAULT_ITEM = 0;// 默认类型
 	private static final int MORE_ITEM = 1;// 更多条目
+	ListView list;
 
-	public DefaultAdapter(List<Data> datas) {
+	public DefaultAdapter(List<Data> datas, ListView list) {
 		this.datas = datas;
+		list.setOnItemClickListener(this);
+		this.list = list;
+	}
+
+	/**
+	 * listview 点击回调的方法
+	 */
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
+		// Toast.makeText(UIUtils.getContext(), position + "position:",
+		// Toast.LENGTH_SHORT).show();
+		position = position - list.getHeaderViewsCount();// 获取到顶部条目的数量
+		onInnerItemClick(position);
 	}
 
 	public List<Data> getDatas() {
@@ -27,6 +50,11 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter {
 
 	public void setDatas(List<Data> datas) {
 		this.datas = datas;
+	}
+
+	// 在该方法处理条目的点击事件
+	public void onInnerItemClick(int position) {
+
 	}
 
 	@Override
@@ -107,8 +135,10 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter {
 		return holder.getContentview(); // 如果当前Holder 恰好是MoreHolder
 										// 证明MoreHOlder已经显示
 	}
-//此处的目的是为了传递个moreholder,以此可以给后面加载数据设置图像
+
+	// 此处的目的是为了传递个moreholder,以此可以给后面加载数据设置图像
 	private MoreHoder holder;
+
 	private BaseHoder getMoreHolder() {
 		if (holder != null) {
 			return holder;
@@ -144,10 +174,9 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter {
 							datas.addAll(newData);
 							notifyDataSetChanged();// 在主线程刷新界面
 						}
-						
+
 					}
 				});
-				
 
 			}
 

@@ -9,6 +9,7 @@ import com.example.googlesto.fragment.GameFragment;
 import com.example.googlesto.fragment.HomeFragment;
 import com.example.googlesto.fragment.SubjectFragment;
 import com.example.googlesto.fragment.TopFragment;
+import com.example.googlesto.holder.MenuHolder;
 import com.example.googlesto.tools.UIUtils;
 
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 public class MainActivity extends BaseActivity implements OnQueryTextListener {
@@ -39,13 +41,15 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 	private ActionBarDrawerToggle drawerToggle;
 	private ActionBar actionBar;
 	private PagerTabStrip pagertabstrip;
-	private String[] stringArrays;//标签名字
-	
+	private String[] stringArrays;// 标签名字
+	private FrameLayout fl_menu;// 菜单的根布局
+
 	@Override
 	protected void init() {
 		super.init();
 		stringArrays = UIUtils.getStringArray(R.array.tab_names);
 	}
+
 	@Override
 	protected void initActionBar() {
 		actionBar = getSupportActionBar();
@@ -82,15 +86,21 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 		pagertabstrip.setTabIndicatorColor(getResources().getColor(
 				R.color.indicatorcolor));
 		myViewPager.setAdapter(new MainAdapter(getSupportFragmentManager()));
-		myViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
-			@Override
-			public void onPageSelected(int position) {
-				super.onPageSelected(position);
-				BaseFragment creatFragment = FragmentFactory.creatFragment(position);
-			creatFragment.show();//当界面切换的时候重新请求服务器，切换状态
-			}
-		});
-	
+		myViewPager
+				.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+					@Override
+					public void onPageSelected(int position) {
+						super.onPageSelected(position);
+						BaseFragment creatFragment = FragmentFactory
+								.creatFragment(position);
+						creatFragment.show();// 当界面切换的时候重新请求服务器，切换状态
+					}
+				});
+		fl_menu = (FrameLayout) findViewById(R.id.fl_menu);
+		MenuHolder mholder = new MenuHolder();
+		// 之前已经登录过了,就把信息保存到本地，实现下面的方法把用户信息设置到界面
+		// holder.setData(data)
+		fl_menu.addView(mholder.getContentview());// 添加侧边栏
 	}
 
 	@Override
@@ -104,16 +114,19 @@ public class MainActivity extends BaseActivity implements OnQueryTextListener {
 		}
 		return true;
 	}
+
 	// 创建viewpager适配器，因为此例中的viewpager要和fragment关联，所以不用常用的pageradapter
 	class MainAdapter extends FragmentStatePagerAdapter {
 		public MainAdapter(FragmentManager fm) {
 			super(fm);
 		}
+
 		// 每个条目返回的Fragment
 		@Override
 		public Fragment getItem(int position) {
-		return FragmentFactory.creatFragment(position);
+			return FragmentFactory.creatFragment(position);
 		}
+
 		// 一共有几个条目
 		@Override
 		public int getCount() {

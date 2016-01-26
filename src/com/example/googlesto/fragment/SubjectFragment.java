@@ -30,14 +30,14 @@ public class SubjectFragment extends BaseFragment {
 	public View createSuccessView() {
 		BaseListView listView = new BaseListView(UIUtils.getContext());
 
-		listView.setAdapter(new SubjectAdapter(datas));
+		listView.setAdapter(new SubjectAdapter(datas,listView));
 		return listView;
 	}
 
 	class SubjectAdapter extends DefaultAdapter<SubjectInfo> {
 
-		public SubjectAdapter(List<SubjectInfo> datas) {
-			super(datas);
+		public SubjectAdapter(List<SubjectInfo> datas, ListView list) {
+			super(datas,list);
 		}
 
 		@Override
