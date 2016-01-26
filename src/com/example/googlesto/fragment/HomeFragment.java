@@ -59,7 +59,7 @@ public class HomeFragment extends BaseFragment {
 		HomePictureHolder  hpHolder = new HomePictureHolder();
 		hpHolder.setDatas(pictures);
 		View hpview = hpHolder.getContentview();//得到homepictureholder管理的对象
-		hpview.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
+//		hpview.setLayoutParams(new AbsListView.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
 		listview.addHeaderView(hpview);// // 把hpholder里的view对象 添加到listView的上面
 		
 		bitmapUtils = new BitmapUtils(getContext());
