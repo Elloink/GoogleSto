@@ -7,6 +7,7 @@ import com.example.googlesto.R;
 import com.example.googlesto.protocol.TopProtocol;
 import com.example.googlesto.tools.DrawableUtils;
 import com.example.googlesto.tools.UIUtils;
+import com.example.googlesto.view.FlowLayout;
 import com.example.googlesto.view.LoadingPage.LoadResult;
 
 import android.bluetooth.le.ScanCallback;
@@ -16,6 +17,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -33,14 +35,18 @@ public class TopFragment extends BaseFragment {
 	public View createSuccessView() {
 		ScrollView scrollView = new ScrollView(UIUtils.getContext());
 		scrollView.setBackgroundResource(R.drawable.grid_item_bg_normal);
-		LinearLayout layout = new LinearLayout(UIUtils.getContext());
+		FlowLayout layout = new FlowLayout(UIUtils.getContext());
+		int padding=UIUtils.dip2px(13);
+		layout.setPadding(padding, padding, padding, padding);
 		int backColor = 0xffcecece;
 		Drawable pressedDrawable=DrawableUtils.createShape(backColor);// 按下显示的图片
-		layout.setOrientation(LinearLayout.VERTICAL);
+//		layout.setOrientation(LinearLayout.VERTICAL);
 		for (int i = 0; i < data.size(); i++) {
 			TextView textView = new TextView(UIUtils.getContext());
 			final String str=data.get(i);
 			textView.setText(str);
+			textView.setGravity(Gravity.CENTER);
+			
 			Random random = new Random();  //创建随机
 			int red = random.nextInt(200)+22;    
 			int green = random.nextInt(200)+22;  
