@@ -76,19 +76,6 @@ public class HomeFragment extends BaseFragment {
 				datas.addAll(load);
 				return load;
 			}
-
-//			@Override
-//			public void onInnerItemClick(int position) {
-//				super.onInnerItemClick(position);
-//				AppInfo appInfo = datas.get(position);
-//				Intent intent = new Intent(UIUtils.getContext(),
-//						Detail_activity.class);
-//				
-//				intent.putExtra("packageName", appInfo.getPackageName());
-//				System.out.println(appInfo.getPackageName());
-//				startActivity(intent);
-//			}
-
 		});
 
 		listview.setOnScrollListener(new PauseOnScrollListener(bitmapUtils,

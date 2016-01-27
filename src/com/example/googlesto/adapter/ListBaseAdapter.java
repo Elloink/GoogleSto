@@ -17,7 +17,7 @@ import android.widget.ListView;
 public abstract class ListBaseAdapter extends DefaultAdapter<AppInfo> {
 
 	public ListBaseAdapter(List<AppInfo> datas, ListView list) {
-		super(datas,list);
+		super(datas, list);
 	}
 
 	@Override
@@ -26,14 +26,16 @@ public abstract class ListBaseAdapter extends DefaultAdapter<AppInfo> {
 	}
 
 	@Override
-	public abstract List<AppInfo> onload() ;
+	public abstract List<AppInfo> onload();
 
+	/**
+	 * 界面跳转的实现
+	 */
 	@Override
 	public void onInnerItemClick(int position) {
 		super.onInnerItemClick(position);
 		AppInfo appInfo = datas.get(position);
-		Intent intent = new Intent(UIUtils.getContext(),
-				Detail_activity.class);
+		Intent intent = new Intent(UIUtils.getContext(), Detail_activity.class);
 		intent.putExtra("packageName", appInfo.getPackageName());
 		UIUtils.startActivity(intent);
 	}

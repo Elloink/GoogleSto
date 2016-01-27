@@ -22,6 +22,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SubjectFragment extends BaseFragment {
 	List<SubjectInfo> datas;
@@ -30,14 +31,14 @@ public class SubjectFragment extends BaseFragment {
 	public View createSuccessView() {
 		BaseListView listView = new BaseListView(UIUtils.getContext());
 
-		listView.setAdapter(new SubjectAdapter(datas,listView));
+		listView.setAdapter(new SubjectAdapter(datas, listView));
 		return listView;
 	}
 
 	class SubjectAdapter extends DefaultAdapter<SubjectInfo> {
 
 		public SubjectAdapter(List<SubjectInfo> datas, ListView list) {
-			super(datas,list);
+			super(datas, list);
 		}
 
 		@Override
@@ -53,11 +54,17 @@ public class SubjectFragment extends BaseFragment {
 			return load;
 		}
 
-		
+		@Override
+		public void onInnerItemClick(int position) {
+			super.onInnerItemClick(position);
+
+			Toast.makeText(getContext(), datas.get(position).getDes(),
+					Toast.LENGTH_SHORT).show();
+		}
 
 	}
 
-	class SubjectHolder extends BaseHoder<SubjectInfo>{
+	class SubjectHolder extends BaseHoder<SubjectInfo> {
 		ImageView item_icon;
 		TextView item_txt;
 
@@ -66,6 +73,7 @@ public class SubjectFragment extends BaseFragment {
 			bitmapUtils.display(this.item_icon, GlobalContants.URL
 					+ "image?name=" + datas.getUrl());
 		}
+
 		@Override
 		public View initView() {
 			View view = UIUtils.inflate(R.layout.item_subject);
