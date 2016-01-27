@@ -11,7 +11,7 @@ public class MoreHoder extends BaseHoder<Integer> {
 	public static final int HAS_NO_MORE = 0; // 没有额外数据了
 	public static final int LOAD_ERROR = 1;// 加载失败
 	public static final int HAS_MORE = 2;// 有额外数据
-
+	private boolean  hasmore;
 	private RelativeLayout rl_more_loading,rl_more_error;
 	@Override
 	public View initView() {
@@ -23,16 +23,22 @@ public class MoreHoder extends BaseHoder<Integer> {
 
 	private DefaultAdapter adapter;
 
-	public MoreHoder(DefaultAdapter adapter) {
+	public MoreHoder(DefaultAdapter adapter, boolean hasmore) {
 		super();
 		this.adapter = adapter;
-
+		this.hasmore = hasmore;
+		if(!hasmore){
+			setDatas(0);//如果没有更多设置界面不可见
+		}
 	}
 
 	// 当moreholder调用此方法时吗，应该加载更多数据
 	@Override
 	public View getContentview() {
-		loadmore();
+		if (hasmore) {
+			loadmore();//为true加载更多，默认true
+		}
+		
 		return super.getContentview();
 	}
 

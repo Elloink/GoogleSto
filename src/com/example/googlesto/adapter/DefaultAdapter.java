@@ -79,7 +79,7 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter implements
 		return getDefaultItemViewType(position);// 如果不是最后一个条目返回一个默认的类型
 	}
 
-	private int getDefaultItemViewType(int position) {
+	protected int getDefaultItemViewType(int position) {
 		return DEFAULT_ITEM;
 	}
 
@@ -119,7 +119,7 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter implements
 				holder = (BaseHoder<Data>) convertview.getTag();
 			}
 			break;
-		case DEFAULT_ITEM:
+		default:
 			if (convertview == null) {
 				holder = getHolder();
 			} else {
@@ -141,10 +141,19 @@ public abstract class DefaultAdapter<Data> extends BaseAdapter implements
 		if (holder != null) {
 			return holder;
 		} else {
-			holder = new MoreHoder(this);
+			holder = new MoreHoder(this, hasMore());
 			return holder;
 		}
 
+	}
+
+	/**
+	 * 是否有更多
+	 * 
+	 * @return
+	 */
+	public boolean hasMore() {
+		return true;
 	}
 
 	public abstract BaseHoder<Data> getHolder();
