@@ -1,6 +1,7 @@
 package com.example.googlesto;
 
 import com.example.googlesto.domin.AppInfo;
+import com.example.googlesto.holder.DetailBottomHolder;
 import com.example.googlesto.holder.DetailDesHolder;
 import com.example.googlesto.holder.DetailInfoHolder;
 import com.example.googlesto.holder.DetailSafeHolder;
@@ -50,12 +51,15 @@ public class Detail_activity extends BaseActivity {
 	private DetailSafeHolder safeHolder;
 
 	private DetailDesHolder desHolder;
+	private DetailBottomHolder bottomHolder;
 
 	protected View createSuccessView() {
 		View view = UIUtils.inflate(R.layout.activity_detail);
 		// 添加信息区域
 		bottom_layout = (FrameLayout) view.findViewById(R.id.bottom_layout);
-
+		bottomHolder = new DetailBottomHolder();
+		bottomHolder.setDatas(data);
+		bottom_layout.addView(bottomHolder.getContentview());
 		// 操作 应用程序信息
 		detail_info = (FrameLayout) view.findViewById(R.id.detail_info);
 		detailInfoHolder = new DetailInfoHolder();
@@ -78,6 +82,10 @@ public class Detail_activity extends BaseActivity {
 		screenHolder = new DetailSreenHolder();
 		screenHolder.setDatas(data);
 		detail_screen.addView(screenHolder.getContentview());
+		//底部界面实现
+	
+		
+		
 
 		return view;
 	}

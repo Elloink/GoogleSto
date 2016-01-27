@@ -1,10 +1,12 @@
 package com.example.googlesto.tools;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
+import com.example.googlesto.BaseActivity;
 import com.example.googlesto.BaseApplication;
 
 public class UIUtils {
@@ -83,10 +85,12 @@ public class UIUtils {
 	public static int setDumens(int dialogMinWidthMajor) {
 		return (int) getResource().getDimension(dialogMinWidthMajor);
 	}
-/**
- * 取消一个任务
- * @param run
- */
+
+	/**
+	 * 取消一个任务
+	 * 
+	 * @param run
+	 */
 	public static void cancel(Runnable run) {
 		BaseApplication.getHandler().removeCallbacks(run);
 	}
@@ -94,10 +98,27 @@ public class UIUtils {
 	/**
 	 * 延迟执行的当前任务
 	 * 
-	 * @param autoRunTask 任务  调用runnable里面的run方法
-	 * @param i  延迟时间
+	 * @param autoRunTask
+	 *            任务 调用runnable里面的run方法
+	 * @param i
+	 *            延迟时间
 	 */
 	public static void postDelayed(Runnable run, int i) {
 		BaseApplication.getHandler().postDelayed(run, i);
+	}
+
+	/**
+	 * 打开activity
+	 * 
+	 * @param intent
+	 */
+	public static void startActivity(Intent intent) {
+		// 如果不在activity里去打开activity 需要指定任务栈 需要设置标签
+		if (BaseActivity.activity == null) {
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			getContext().startActivity(intent);
+		} else {
+			BaseActivity.activity.startActivity(intent);
+		}
 	}
 }
