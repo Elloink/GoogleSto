@@ -155,6 +155,7 @@ int attr queryBackground 0x7f01009d
 int attr queryHint 0x7f010094
 int attr radioButtonStyle 0x7f01006a
 int attr ratingBarStyle 0x7f01006b
+int attr ratio 0x7f0100ce
 int attr searchHintIcon 0x7f010099
 int attr searchIcon 0x7f010098
 int attr searchViewStyle 0x7f010045
@@ -1448,3 +1449,5 @@ int[] styleable ViewStubCompat { 0x010100d0, 0x010100f2, 0x010100f3 }
 int styleable ViewStubCompat_android_id 0
 int styleable ViewStubCompat_android_inflatedId 2
 int styleable ViewStubCompat_android_layout 1
+int[] styleable com_example_googlesto_view_RatioLayout { 0x7f0100ce }
+int styleable com_example_googlesto_view_RatioLayout_ratio 0

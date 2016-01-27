@@ -19,10 +19,15 @@ public class RatioLayout extends FrameLayout {
 
 	public RatioLayout(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+		// 参数1 命名控件 参数2 属性的名字 参数3 默认的值
+				float ratio = attrs.getAttributeFloatValue(
+						"http://schemas.android.com/apk/res/com.example.googlesto",
+						"ratio", 2.43f);
+				setRatio(ratio);
 	}
 
 	public RatioLayout(Context context, AttributeSet attrs) {
-		super(context, attrs);
+		this(context, attrs,0);
 	}
 
 	// 测量当前布局
